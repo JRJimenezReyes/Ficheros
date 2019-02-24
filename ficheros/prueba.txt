@@ -1,0 +1,7 @@
+Esto es una prueba de un fichero de texto.
+Tiene varias líneas.
+Está codificado en UTF-8.
+Bal, bla!!!!
+Bal, bla!!!!
+Bal, bla!!!!
+Bal, bla!!!!

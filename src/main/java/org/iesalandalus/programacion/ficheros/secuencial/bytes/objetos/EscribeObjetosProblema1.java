@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 
 public class EscribeObjetosProblema1 {
 	public static void main(String[] args) {
-		Persona persona = new Persona();
+		Persona persona = new Persona("lo que sea", 1);
 		File fichero = new File("ficheros/personas.dat");
 		String[] nombres = { "Juan", "Alfonso", "Araceli", "Manolo", "Rubén", "Elvira", "Inés", "José Ramón" };
 		int[] edades = { 31, 35, 25, 40, 37, 18, 20, 22 };

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox alignment="CENTER" prefHeight="267.0" prefWidth="274.0" spacing="30.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="javafx.jxml.aplicacion.EjemploControlador">
+   <children>
+      <Label text="Ejemplo de aplicacion utilizando FXML" textAlignment="CENTER" textFill="#0f62f2" wrapText="true">
+         <font>
+            <Font name="Ani" size="30.0" />
+         </font>
+      </Label>
+      <HBox alignment="CENTER_RIGHT" prefHeight="48.0" prefWidth="274.0">
+         <children>
+            <Button fx:id="btCerrar" mnemonicParsing="false" onAction="#cerrar" style="-fx-base: #dc143c;" text="Cerrar">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

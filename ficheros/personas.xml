@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<personas>
+    <persona edad="31" nombre="Juan"/>
+    <persona edad="35" nombre="Alfonso"/>
+    <persona edad="25" nombre="Araceli"/>
+    <persona edad="40" nombre="Manolo"/>
+    <persona edad="37" nombre="Rubén"/>
+    <persona edad="18" nombre="Elvira"/>
+    <persona edad="20" nombre="Inés"/>
+    <persona edad="43" nombre="José Ramón"/>
+    <persona edad="31" nombre="Juan"/>
+    <persona edad="35" nombre="Alfonso"/>
+    <persona edad="25" nombre="Araceli"/>
+    <persona edad="40" nombre="Manolo"/>
+    <persona edad="37" nombre="Rubén"/>
+    <persona edad="18" nombre="Elvira"/>
+    <persona edad="20" nombre="Inés"/>
+    <persona edad="43" nombre="José Ramón"/>
+</personas>

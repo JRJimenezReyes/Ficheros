@@ -25,10 +25,10 @@ import org.iesalandalus.programacion.ficheros.secuencial.bytes.objetos.Persona;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class ConvertirFicheroObjetosAXML {
+public class ConvertirFicheroObjetosAXMLConAtributos {
 	
 	private static final String FICHERO_OBJETOS = "ficheros" + File.separator + "personas.dat";
-	private static final String FICHERO_XML = "ficheros" + File.separator + "personas.xml";
+	private static final String FICHERO_XML = "ficheros" + File.separator + "personasAtributos.xml";
 	
 	public static void main(String[] args) {
 		List<Persona> personas = leerFicheroObjetos(new File(FICHERO_OBJETOS));
@@ -71,12 +71,17 @@ public class ConvertirFicheroObjetosAXML {
 		Document documentoXML = constructor.newDocument();
 		documentoXML.appendChild(documentoXML.createElement("personas"));
 		for (Persona persona : personas) {
-			Element elementoPersona = documentoXML.createElement("persona");
-			elementoPersona.setAttribute("nombre", persona.getNombre());
-			elementoPersona.setAttribute("edad", String.format("%d", persona.getEdad()));
+			Element elementoPersona = crearElementoPersonaConAtributos(documentoXML, persona);
 			documentoXML.getDocumentElement().appendChild(elementoPersona);
 		}
 		return documentoXML;
+	}
+
+	private static Element crearElementoPersonaConAtributos(Document documentoXML, Persona persona) {
+		Element elementoPersona = documentoXML.createElement("persona");
+		elementoPersona.setAttribute("nombre", persona.getNombre());
+		elementoPersona.setAttribute("edad", String.format("%d", persona.getEdad()));
+		return elementoPersona;
 	}
 	
 	private static void escribirXMLAFichero(Document documento, File salida) {

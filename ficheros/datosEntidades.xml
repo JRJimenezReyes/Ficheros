@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<personas>
+    <dato>
+        <cadena>Cadena número: 0</cadena>
+        <entero>0</entero>
+        <doble>0,000000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 1</cadena>
+        <entero>10</entero>
+        <doble>0,100000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 2</cadena>
+        <entero>20</entero>
+        <doble>0,200000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 3</cadena>
+        <entero>30</entero>
+        <doble>0,300000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 4</cadena>
+        <entero>40</entero>
+        <doble>0,400000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 5</cadena>
+        <entero>50</entero>
+        <doble>0,500000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 6</cadena>
+        <entero>60</entero>
+        <doble>0,600000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 7</cadena>
+        <entero>70</entero>
+        <doble>0,700000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 8</cadena>
+        <entero>80</entero>
+        <doble>0,800000</doble>
+    </dato>
+    <dato>
+        <cadena>Cadena número: 9</cadena>
+        <entero>90</entero>
+        <doble>0,900000</doble>
+    </dato>
+</personas>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<personas>
+    <persona cadena="Cadena número: 0" doble="0,000000" entero="0"/>
+    <persona cadena="Cadena número: 1" doble="0,100000" entero="10"/>
+    <persona cadena="Cadena número: 2" doble="0,200000" entero="20"/>
+    <persona cadena="Cadena número: 3" doble="0,300000" entero="30"/>
+    <persona cadena="Cadena número: 4" doble="0,400000" entero="40"/>
+    <persona cadena="Cadena número: 5" doble="0,500000" entero="50"/>
+    <persona cadena="Cadena número: 6" doble="0,600000" entero="60"/>
+    <persona cadena="Cadena número: 7" doble="0,700000" entero="70"/>
+    <persona cadena="Cadena número: 8" doble="0,800000" entero="80"/>
+    <persona cadena="Cadena número: 9" doble="0,900000" entero="90"/>
+</personas>

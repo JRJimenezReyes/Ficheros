@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<personas>
+    <persona>
+        <nombre>Juan</nombre>
+        <edad>31</edad>
+    </persona>
+    <persona>
+        <nombre>Alfonso</nombre>
+        <edad>35</edad>
+    </persona>
+    <persona>
+        <nombre>Araceli</nombre>
+        <edad>25</edad>
+    </persona>
+    <persona>
+        <nombre>Manolo</nombre>
+        <edad>40</edad>
+    </persona>
+    <persona>
+        <nombre>Rubén</nombre>
+        <edad>37</edad>
+    </persona>
+    <persona>
+        <nombre>Elvira</nombre>
+        <edad>18</edad>
+    </persona>
+    <persona>
+        <nombre>Inés</nombre>
+        <edad>20</edad>
+    </persona>
+    <persona>
+        <nombre>José Ramón</nombre>
+        <edad>43</edad>
+    </persona>
+    <persona>
+        <nombre>Juan</nombre>
+        <edad>31</edad>
+    </persona>
+    <persona>
+        <nombre>Alfonso</nombre>
+        <edad>35</edad>
+    </persona>
+    <persona>
+        <nombre>Araceli</nombre>
+        <edad>25</edad>
+    </persona>
+    <persona>
+        <nombre>Manolo</nombre>
+        <edad>40</edad>
+    </persona>
+    <persona>
+        <nombre>Rubén</nombre>
+        <edad>37</edad>
+    </persona>
+    <persona>
+        <nombre>Elvira</nombre>
+        <edad>18</edad>
+    </persona>
+    <persona>
+        <nombre>Inés</nombre>
+        <edad>20</edad>
+    </persona>
+    <persona>
+        <nombre>José Ramón</nombre>
+        <edad>43</edad>
+    </persona>
+</personas>

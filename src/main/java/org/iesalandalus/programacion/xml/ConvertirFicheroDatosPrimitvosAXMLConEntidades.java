@@ -72,15 +72,15 @@ public class ConvertirFicheroDatosPrimitvosAXMLConEntidades {
 			System.out.println("Error al crear el constructor.");
 		}
 		Document documentoXML = constructor.newDocument();
-		documentoXML.appendChild(documentoXML.createElement("personas"));
+		documentoXML.appendChild(documentoXML.createElement("datosPrimitvos"));
 		for (Dato dato : datosPrimitvos) {
-			Element elementoDato = crearElementoPersonaConAtributos(documentoXML, dato);
+			Element elementoDato = crearElementoDatoConAtributos(documentoXML, dato);
 			documentoXML.getDocumentElement().appendChild(elementoDato);
 		}
 		return documentoXML;
 	}
 
-	private static Element crearElementoPersonaConAtributos(Document documentoXML, Dato dato) {
+	private static Element crearElementoDatoConAtributos(Document documentoXML, Dato dato) {
 		Element elementoDato = documentoXML.createElement("dato");
 		Element elementoCadena = documentoXML.createElement("cadena");
 		elementoCadena.setTextContent(dato.cadena);

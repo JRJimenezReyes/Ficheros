@@ -85,16 +85,16 @@ public class ConvertirFicheroDatosPrimitvosAXMLConAtributos {
 			System.out.println("Error al crear el constructor.");
 		}
 		Document documentoXML = constructor.newDocument();
-		documentoXML.appendChild(documentoXML.createElement("personas"));
+		documentoXML.appendChild(documentoXML.createElement("datosPrimitvos"));
 		for (Dato dato : datosPrimitvos) {
-			Element elementoDato = crearElementoPersonaConAtributos(documentoXML, dato);
+			Element elementoDato = crearElementoDatoConAtributos(documentoXML, dato);
 			documentoXML.getDocumentElement().appendChild(elementoDato);
 		}
 		return documentoXML;
 	}
 
-	private static Element crearElementoPersonaConAtributos(Document documentoXML, Dato dato) {
-		Element elementoPersona = documentoXML.createElement("persona");
+	private static Element crearElementoDatoConAtributos(Document documentoXML, Dato dato) {
+		Element elementoPersona = documentoXML.createElement("dato");
 		elementoPersona.setAttribute("cadena", dato.cadena);
 		elementoPersona.setAttribute("entero", String.format("%d", dato.entero));
 		elementoPersona.setAttribute("doble", String.format("%f", dato.doble));

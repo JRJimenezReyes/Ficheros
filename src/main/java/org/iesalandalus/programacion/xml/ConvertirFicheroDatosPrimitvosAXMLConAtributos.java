@@ -53,28 +53,31 @@ public class ConvertirFicheroDatosPrimitvosAXMLConAtributos {
 	private static List<Dato> leerFicheroDatosPrimitvos(File fichero) {
 		List<Dato> datosPrimitvos = new ArrayList<>();
 		try (DataInputStream entrada = new DataInputStream(new FileInputStream(fichero))){
-			String cadena = "";
-			int entero = 0;
-			double doble = 0.0;
-			try {
-				while (true) {
-					cadena = entrada.readUTF();
-					entero = entrada.readInt();
-					doble = entrada.readDouble();
-					datosPrimitvos.add(new Dato(cadena, entero, doble));
-				}
-			} catch (EOFException eo) {
-				System.out.println("Fichero leído satisfactoriamente.");
-			} catch (IOException e) {
-				System.out.println("Error inesperado de Entrada/Salida.");
-			}
+			leerDatosPrimitivos(datosPrimitvos, entrada);
 		} catch (IOException e) {
 			System.out.println("No puedo abrir el fihero de entrada.");
 		}
 		return datosPrimitvos;
 	}
-	
 
+	private static void leerDatosPrimitivos(List<Dato> datosPrimitvos, DataInputStream entrada) {
+		try {
+			String cadena = "";
+			int entero;
+			double doble;
+			while (cadena != null) { //Esta condición siempre será verdadera
+				cadena = entrada.readUTF();
+				entero = entrada.readInt();
+				doble = entrada.readDouble();
+				datosPrimitvos.add(new Dato(cadena, entero, doble));
+			}
+		} catch (EOFException e) {
+			System.out.println("Fichero leído satisfactoriamente.");
+		} catch (IOException e) {
+			System.out.println("Error inesperado de E/S.");
+		}
+	}
+	
 	private static Document crearDOM(List<Dato> datosPrimitvos) {
 		DocumentBuilder constructor = null;
 		try {
@@ -84,11 +87,14 @@ public class ConvertirFicheroDatosPrimitvosAXMLConAtributos {
 		} catch (ParserConfigurationException e) {
 			System.out.println("Error al crear el constructor.");
 		}
-		Document documentoXML = constructor.newDocument();
-		documentoXML.appendChild(documentoXML.createElement("datosPrimitvos"));
-		for (Dato dato : datosPrimitvos) {
-			Element elementoDato = crearElementoDatoConAtributos(documentoXML, dato);
-			documentoXML.getDocumentElement().appendChild(elementoDato);
+		Document documentoXML = null;
+		if (constructor != null) {
+			documentoXML = constructor.newDocument();
+			documentoXML.appendChild(documentoXML.createElement("datosPrimitvos"));
+			for (Dato dato : datosPrimitvos) {
+				Element elementoDato = crearElementoDatoConAtributos(documentoXML, dato);
+				documentoXML.getDocumentElement().appendChild(elementoDato);
+			}
 		}
 		return documentoXML;
 	}

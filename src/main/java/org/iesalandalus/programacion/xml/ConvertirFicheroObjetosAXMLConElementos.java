@@ -41,24 +41,20 @@ public class ConvertirFicheroObjetosAXMLConElementos {
 	private static List<Persona> leerFicheroObjetos(File fichero) {
 		List<Persona> personas = new ArrayList<>();
 		try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(fichero))){
-			try {
-				while (true) {
-					personas.add((Persona) entrada.readObject());
-				}
-			} catch (EOFException eo) {
-				System.out.println("Fichero leído satisfactoriamente.");
-			} catch (ClassNotFoundException e) {
-				System.out.println("No puedo encontrar la clase que tengo que leer.");
-			} catch (IOException e) {
-				System.out.println("Error inesperado de Entrada/Salida.");
+			Persona persona;
+			while ((persona = (Persona)entrada.readObject()) != null) {
+				personas.add(persona);
 			}
+		} catch (EOFException e) {
+			System.out.println("Fichero leído satisfactoriamente.");
+		} catch (ClassNotFoundException e) {
+			System.out.println("No puedo encontrar la clase que tengo que leer.");
 		} catch (IOException e) {
 			System.out.println("No puedo abrir el fihero de entrada.");
 		}
 		return personas;
 	}
 	
-
 	private static Document crearDOM(List<Persona> personas) {
 		DocumentBuilder constructor = null;
 		try {
@@ -68,11 +64,14 @@ public class ConvertirFicheroObjetosAXMLConElementos {
 		} catch (ParserConfigurationException e) {
 			System.out.println("Error al crear el constructor.");
 		}
-		Document documentoXML = constructor.newDocument();
-		documentoXML.appendChild(documentoXML.createElement("personas"));
-		for (Persona persona : personas) {
-			Element elementoPersona = crearElementoPersonaConAtributos(documentoXML, persona);
-			documentoXML.getDocumentElement().appendChild(elementoPersona);
+		Document documentoXML = null;
+		if (constructor != null) {
+			documentoXML = constructor.newDocument();
+			documentoXML.appendChild(documentoXML.createElement("personas"));
+			for (Persona persona : personas) {
+				Element elementoPersona = crearElementoPersonaConAtributos(documentoXML, persona);
+				documentoXML.getDocumentElement().appendChild(elementoPersona);
+			}
 		}
 		return documentoXML;
 	}

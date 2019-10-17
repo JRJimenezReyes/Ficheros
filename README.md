@@ -10,3 +10,4 @@ Proyecto en el que se muestran ejemplos de utilización de ficheros en java. En 
         - **bytes**: En este paquete tenemos ejemplos sobre el uso de ficheros binarios: mediante flujos, mediante buffers, haciendo uso de datos primitivos y de objetos. Para éste último, también se muestran los dos problemas que nos podemos encontrar a la hora trabajar con este tipo de ficheros y cómo solucionarlos.
         - **caracteres**: En este paquete tenemos ejemplos sobre el uso de ficheros de texto: mediante flujos y mediante buffers.
 - **xml**: Manipulación básica de ficheros XML, con ejemplos para leer un fichero XML y mostrar su DOM, leer un fichero de objetos y excribirlo como fichero XML, etc.
+- **csv**: Manipulación básica de ficheros CSV.

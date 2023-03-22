@@ -3,7 +3,7 @@ package org.iesalandalus.programacion.ficheros.file;
 import java.io.File;
 import java.util.Date;
 
-import utilidades.Entrada;
+import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class MostrarPropiedades {
 

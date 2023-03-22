@@ -1,13 +1,9 @@
 package org.iesalandalus.programacion.xml;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.StringWriter;
 
 import javax.xml.XMLConstants;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -17,40 +13,28 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 public class MostrarXML {
 	
 	private static final String FICHERO_XML = "ficheros" + File.separator + "ejemplo.xml";
 	
 	public static void main(String[] args) {
-		Document documento = leerXML(new File(FICHERO_XML));
-		mostrarDocumentoXML(documento);
-	}
-
-	private static Document leerXML(File ficheroXML) {
-		Document documentoXML = null;
-		try {
-			DocumentBuilderFactory factoria = DocumentBuilderFactory.newInstance();
-			factoria.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
-			DocumentBuilder constructor = factoria.newDocumentBuilder();
-			documentoXML = constructor.parse(ficheroXML);
-		} catch (ParserConfigurationException e) {
-			System.out.println("Error al crear el constructor.");
-		} catch (SAXException e) {
-			System.out.println("Documento XML mal formado.");
-		} catch (IOException e) {
-			System.out.println("Error inesperado de E/S.");
+		Document documento = UtilidadesXml.leerXmlDeFichero(new File(FICHERO_XML));
+		if (documento != null) {
+			System.out.println("Fichero XML leído correctamente.");
+			mostrarDocumentoXml(documento);
+		} else {
+			System.out.println("No se ha podido leer el fichero XML.");
 		}
-		return documentoXML;
 	}
 	
-	private static void mostrarDocumentoXML(Document documento) {
+	private static void mostrarDocumentoXml(Document documento) {
         Transformer conversor = null;
         StreamResult destino = null;
 		try {
 			TransformerFactory factoria = TransformerFactory.newInstance();
-			factoria.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+			factoria.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
+			factoria.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
 			conversor = factoria.newTransformer();            
 	        StringWriter documentoXMLTexto = new StringWriter();
 			destino = new StreamResult(documentoXMLTexto);            

@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Amigo {
 	
 	private static final String ER_TELEFONO = "\\d{9}";
-	private static final String ER_CORREO = "\\w+(?:\\.\\w+)*@\\w+\\.\\w{2,5}";
+	private static final String ER_CORREO = "\\w+(?:\\.\\w+)*+@\\w+\\.\\w{2,5}";
 	private static final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	protected String nombre;
@@ -184,7 +184,7 @@ public class Amigo {
 	public String toString() {
 		return String.format(
 				"Amigo [nombre=%s, telefono=%s, correo=%s, direccion=%s, fechaNacimiento=%s, peso=%s, altura=%s]",
-				nombre, telefono, correo, direccion, fechaNacimiento, peso, altura);
+				nombre, telefono, correo, direccion, fechaNacimiento.format(FORMATO_DIA), peso, altura);
 	}
 	
 }

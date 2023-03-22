@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Persona implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private int edad;
 
@@ -17,7 +18,7 @@ public class Persona implements Serializable {
 		if (nombre == null) {
 			throw new NullPointerException("El nombre de una persona no puede ser nulo.");
 		}
-		if (nombre.trim().isEmpty()) {
+		if (nombre.isBlank()) {
 			throw new IllegalArgumentException("El nombre de una persona no puede estar vacío.");
 		}
 		this.nombre = nombre;

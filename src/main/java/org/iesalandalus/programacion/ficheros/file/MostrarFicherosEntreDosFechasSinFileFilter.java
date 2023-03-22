@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import utilidades.Entrada;
+import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class MostrarFicherosEntreDosFechasSinFileFilter {
 	

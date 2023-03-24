@@ -13,33 +13,33 @@ import org.w3c.dom.NodeList;
 
 public class ConvertirXmlConElementosAFicheroObjetos {
 	
-	private static final String FICHERO_OBJETOS = "ficheros" + File.separator + "personas.dat";
-	private static final String FICHERO_XML = "ficheros" + File.separator + "personasElementos.xml";	
+	private static final String FICHERO_OBJETOS = String.format("%s%s%s", "ficheros", File.separator, "personas.dat");
+	private static final String FICHERO_XML = String.format("%s%s%s", "ficheros", File.separator, "personasElementos.xml");	
 	
 	public static void main(String[] args) {
-		Document documento = UtilidadesXml.leerXmlDeFichero(new File(FICHERO_XML));
+		Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_XML);
 		if (documento != null) {
 			System.out.println("Fichero XML leído correctamente.");
-			escribirXmlConElementosAFicheroObjetos(documento, new File(FICHERO_OBJETOS));
+			escribirXmlConElementosAFicheroObjetos(documento);
 		} else {
-			System.out.println("No se ha podido leer el fichero XML.");
+			System.out.printf("No se puede leer el fichero de entrada: %s.%n", FICHERO_XML);
 		}
 	}
 	
-	private static void escribirXmlConElementosAFicheroObjetos(Document documento, File fichero) {
-		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(fichero))){
+	private static void escribirXmlConElementosAFicheroObjetos(Document documento) {
+		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(FICHERO_OBJETOS))){
 			NodeList personas = documento.getElementsByTagName("persona");
 			for (int i = 0; i < personas.getLength(); i++) {
-				Node nPersona = personas.item(i);
-				if (nPersona.getNodeType() == Node.ELEMENT_NODE) {
-					String nombre = ((Element)nPersona).getElementsByTagName("nombre").item(0).getTextContent();
-					int edad = Integer.parseInt(((Element)nPersona).getElementsByTagName("edad").item(0).getTextContent());
+				Node persona = personas.item(i);
+				if (persona.getNodeType() == Node.ELEMENT_NODE) {
+					String nombre = ((Element)persona).getElementsByTagName("nombre").item(0).getTextContent();
+					int edad = Integer.parseInt(((Element)persona).getElementsByTagName("edad").item(0).getTextContent());
 					salida.writeObject(new Persona(nombre, edad));
 				}
 			}
 			System.out.println("Fichero de objetos escrito correctamente.");
 		} catch (IOException e) {
-			System.out.println("No puedo abrir el fihero de salida.");
+			System.out.printf("No existe el directorio de destino o no tengo permiso de escritura: %s.%n", FICHERO_OBJETOS);
 		}
 	}
 }

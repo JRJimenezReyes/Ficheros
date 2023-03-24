@@ -8,9 +8,10 @@ import java.io.ObjectInputStream;
 
 public class LeeObjetos {
 	
+	private static final String FICHERO = String.format("%s%s%s", "ficheros", File.separator, "personas.dat");
+	
 	public static void main(String[] args) {
-		File fichero = new File("ficheros/personas.dat");
-		try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(fichero))){
+		try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(new File(FICHERO)))){
 			mostrarObjectos(entrada);
 		} catch (IOException e) {
 			System.out.println("No puedo abrir el fihero de entrada.");
@@ -21,7 +22,7 @@ public class LeeObjetos {
 		Persona persona;
 		try {
 			while ((persona = (Persona) entrada.readObject()) != null) {
-				System.out.println("Nombre: " + persona.getNombre() + ", edad: " + persona.getEdad());
+				System.out.printf("Nombre: %s, edad: %d%n", persona.getNombre(), persona.getEdad());
 			}
 		} catch (EOFException eo) {
 			System.out.println("Fichero leído satisfactoriamente.");

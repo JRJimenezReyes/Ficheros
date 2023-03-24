@@ -16,15 +16,15 @@ import org.w3c.dom.Document;
 
 public class MostrarXML {
 	
-	private static final String FICHERO_XML = "ficheros" + File.separator + "ejemplo.xml";
+	private static final String FICHERO_XML = String.format("%s%s%s", "ficheros", File.separator, "ejemplo.xml");
 	
 	public static void main(String[] args) {
-		Document documento = UtilidadesXml.leerXmlDeFichero(new File(FICHERO_XML));
+		Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_XML);
 		if (documento != null) {
 			System.out.println("Fichero XML leído correctamente.");
 			mostrarDocumentoXml(documento);
 		} else {
-			System.out.println("No se ha podido leer el fichero XML.");
+			System.out.printf("No se puede leer el fichero de entrada: %s.%n", FICHERO_XML);
 		}
 	}
 	

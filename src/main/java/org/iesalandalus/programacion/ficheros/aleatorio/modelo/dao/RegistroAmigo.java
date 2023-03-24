@@ -14,7 +14,7 @@ public class RegistroAmigo extends Amigo {
 	private static final int LONGITUD_F_NACIMIENTO = 10;	//  20 bytes =  10 caracteres * 2 byte/caracter UNICODE
 	private static final int LONGITUD_PESO = 8;				//   8 bytes ocupa un double
 	private static final int LONGITUD_ALTURA = 4;			//   4 bytes ocupa un integer
-	public static final int LONGITUD = LONGITUD_NOMBRE  * 2 + LONGITUD_TELEFONO * 2 + LONGITUD_CORREO * 2 +
+	static final int LONGITUD = LONGITUD_NOMBRE  * 2 + LONGITUD_TELEFONO * 2 + LONGITUD_CORREO * 2 +
 			LONGITUD_DIRECCION * 2 + LONGITUD_F_NACIMIENTO * 2 + LONGITUD_PESO + LONGITUD_ALTURA;
 	
 	public RegistroAmigo() {
@@ -103,8 +103,9 @@ public class RegistroAmigo extends Amigo {
 	
 	private String leerCadena(RandomAccessFile fichero, int tamano) throws IOException {
 		char[] campo = new char[tamano];
-		for (int i = 0; i < tamano; i++)
+		for (int i = 0; i < tamano; i++) {
 			campo[i] = fichero.readChar();
+		}
 		return new String(campo).trim();
 	}
 

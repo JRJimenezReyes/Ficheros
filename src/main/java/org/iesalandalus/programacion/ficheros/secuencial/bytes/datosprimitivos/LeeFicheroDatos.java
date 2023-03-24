@@ -8,16 +8,13 @@ import java.io.IOException;
 
 public class LeeFicheroDatos {
 	
-	public static final String FICHERO = "ficheros" + File.separator + "ficheroDatos.bin";
+	private static final String FICHERO = String.format("%s%s%s", "ficheros", File.separator, "ficheroDatos.bin");
     
-	public static void main(String[] args) {
-
-		File fichero = new File(FICHERO);
-		
-		try (DataInputStream entrada = new DataInputStream(new FileInputStream(fichero))){
+	public static void main(String[] args) {		
+		try (DataInputStream entrada = new DataInputStream(new FileInputStream(new File(FICHERO)))){
 			mostrarDatos(entrada);
 		} catch (IOException e) {
-			System.out.println("No existe el fichero de origen: " + FICHERO);
+			System.out.printf("No existe el fichero de origen: %s%n", FICHERO);
 		}
 	}
 
@@ -30,7 +27,7 @@ public class LeeFicheroDatos {
 				datoString = entrada.readUTF();
 				datoInt = entrada.readInt();
 				datoDouble = entrada.readDouble();
-				System.out.println("Cadena: " + datoString + "\tEntero: " + datoInt + "\tDoble: " + datoDouble);
+				System.out.printf("Cadena: %s\tEntero: %s\tDoble: %s%n", datoString, datoInt, datoDouble);
 			}
 		} catch (EOFException e) {
 			System.out.println("Fichero leído satisfactoriamente.");

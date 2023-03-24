@@ -22,13 +22,13 @@ public class MainApp {
 		agenda.cerrar();
 		agenda.abrir();
 		agenda.listar();
-		System.out.println("Posición amigo1: " + agenda.buscar(amigo1));
+		System.out.printf("Posición amigo1: %s%n", agenda.buscar(amigo1));
 		agenda.borrar(amigo1);
 		agenda.listar();
-		System.out.println("Posición amigo2: " + agenda.buscar(amigo2));
+		System.out.printf("Posición amigo2: %s%n", agenda.buscar(amigo2));
 		agenda.borrar(amigo2);
 		agenda.listar();
-		System.out.println("Posición amigo3: " + agenda.buscar(amigo3));
+		System.out.printf("Posición amigo3: %s%n", agenda.buscar(amigo3));
 		agenda.borrar(amigo3);
 		agenda.listar();
 

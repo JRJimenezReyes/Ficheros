@@ -11,10 +11,10 @@ public class AgendaOrdenada extends Agenda {
 	}
 	
 	public void insertar(Amigo amigo) throws IOException {
-		long pos = buscar(amigo);
-		if (pos != -1) {
-			desplazarDerecha(pos);
-			escribir(amigo, pos);
+		long indice = buscar(amigo);
+		if (indice != -1) {
+			desplazarDerecha(indice);
+			escribir(amigo, indice);
 		} else {
 			escribir(amigo);
 		}
@@ -27,38 +27,38 @@ public class AgendaOrdenada extends Agenda {
 
 	@Override
 	public void borrar(Amigo amigo) throws IOException {
-		long pos = busquedaBinaria(amigo, 1, getNumRegistros());
-		if (pos != -1) {
-			desplazarIzquierda(pos);
+		long indice = busquedaBinaria(amigo, 1, getNumRegistros());
+		if (indice != -1) {
+			desplazarIzquierda(indice);
 		}
 	}
 
-	private long busquedaBinaria(Amigo amigo, long izq, long der) throws IOException {
-		long pos = -1;
-		long mitad = (izq + der) / 2;
-		if (izq <= der) {
+	private long busquedaBinaria(Amigo amigo, long izquierda, long derecha) throws IOException {
+		long indice = -1;
+		long mitad = (izquierda + derecha) / 2;
+		if (izquierda <= derecha) {
 			Amigo amigoMitad = leer(mitad);
 			if (amigo.compareTo(amigoMitad) < 0)
-				pos = busquedaBinaria(amigo, izq, mitad - 1);
+				indice = busquedaBinaria(amigo, izquierda, mitad - 1);
 			else {
 				if (amigo.compareTo(amigoMitad) == 0)
-					pos = mitad;
+					indice = mitad;
 				else
-					pos = busquedaBinaria(amigo, mitad + 1, der);
+					indice = busquedaBinaria(amigo, mitad + 1, derecha);
 			}
 		} else {
-			pos = mitad + 1;
+			indice = mitad + 1;
 		}
-		return pos;
+		return indice;
 	}
 
-	private void desplazarDerecha(long pos) throws IOException {
+	private void desplazarDerecha(long indice) throws IOException {
 		long numRegistros = getNumRegistros();
 		setNumRegistros(numRegistros + 1);
-		Amigo aux = null;
-		for (long i = numRegistros; i > pos - 1; i--) {
-			aux = leer(i);
-			escribir(aux, i + 1);
+		Amigo amigoAuxiliar = null;
+		for (long i = numRegistros; i > indice - 1; i--) {
+			amigoAuxiliar = leer(i);
+			escribir(amigoAuxiliar, i + 1);
 		}
 	}
 

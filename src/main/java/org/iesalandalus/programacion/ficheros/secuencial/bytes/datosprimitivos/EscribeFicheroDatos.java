@@ -6,17 +6,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class EscribeFicheroDatos {
-	
-public static final String FICHERO = "ficheros" + File.separator + "ficheroDatos.bin";
-    
+
+	private static final String FICHERO = String.format("%s%s%s", "ficheros", File.separator, "ficheroDatos.bin");
+
 	public static void main(String[] args) {
 
-		File fichero = new File(FICHERO);
-		
-		try (DataOutputStream salida = new DataOutputStream(new FileOutputStream(fichero))){
+		try (DataOutputStream salida = new DataOutputStream(new FileOutputStream(new File(FICHERO)))) {
 			escribirDatos(salida);
 		} catch (IOException e) {
-			System.out.println("No existe el fichero: " + FICHERO);
+			System.out.printf("No existe el fichero: %s%n", FICHERO);
 		}
 	}
 
@@ -25,10 +23,9 @@ public static final String FICHERO = "ficheros" + File.separator + "ficheroDatos
 			String datoString;
 			int datoInt;
 			double datoDouble;
-			
 			for (int i = 0; i < 10; i++) {
 				datoString = "Cadena número: " + i;
-				datoInt = 10*i;
+				datoInt = 10 * i;
 				datoDouble = datoInt / 100.0;
 				salida.writeUTF(datoString);
 				salida.writeInt(datoInt);

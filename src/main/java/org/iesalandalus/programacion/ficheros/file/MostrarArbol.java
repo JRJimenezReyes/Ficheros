@@ -5,7 +5,6 @@ import java.io.File;
 public class MostrarArbol {
 
 	public static void main(String[] args) {
-		// File carpeta = new File(args[0]);
 		File carpeta = new File(".");
 		if (!carpeta.exists()) 
 			System.out.println(args[0] + " NO existe.");

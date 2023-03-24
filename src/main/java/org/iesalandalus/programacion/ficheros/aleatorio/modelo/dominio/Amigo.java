@@ -46,13 +46,13 @@ public class Amigo {
 		if (amigo == null) {
 			throw new NullPointerException("El amigo a copiar no puede ser nulo.");
 		}
-		setNombre(amigo.nombre);
-		setTelefono(amigo.telefono);
-		setCorreo(amigo.correo);
-		setDireccion(amigo.direccion);
-		setFechaNacimiento(amigo.fechaNacimiento);
-		setPeso(amigo.peso);
-		setAltura(amigo.altura);
+		nombre = amigo.getNombre();
+		telefono = amigo.getTelefono();
+		correo = amigo.getCorreo();
+		direccion = amigo.getDireccion();
+		fechaNacimiento = amigo.getFechaNacimiento();
+		peso = amigo.getPeso();
+		altura = amigo.getAltura();
 	}
 	
 	public String getNombre() {
@@ -63,7 +63,7 @@ public class Amigo {
 		if (nombre == null) {
 			throw new NullPointerException("El nombre no puede ser nulo.");
 		}
-		if (nombre.trim().isEmpty()) {
+		if (nombre.isBlank()) {
 			throw new IllegalArgumentException("El nombre no puede estar vacío.");
 		}
 		this.nombre = nombre;
@@ -104,6 +104,9 @@ public class Amigo {
 	public void setDireccion(String direccion) {
 		if (direccion == null) {
 			throw new NullPointerException("La dirección no puede ser nula.");
+		}
+		if (direccion.isBlank()) {
+			throw new IllegalArgumentException("La dirección no puede estar vacía.");
 		}
 		this.direccion = direccion;
 	}

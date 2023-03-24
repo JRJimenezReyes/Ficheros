@@ -14,7 +14,8 @@ public class MyObjectOutputStream extends ObjectOutputStream {
 		super(out);
     }
 
+    @Override
     protected void writeStreamHeader() throws IOException {
-        // No hago nada
+        // No escribo ninguna cabecera
     }
 }

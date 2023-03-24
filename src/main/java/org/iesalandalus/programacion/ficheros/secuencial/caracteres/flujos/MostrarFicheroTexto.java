@@ -4,12 +4,10 @@ import java.io.*;
 
 public class MostrarFicheroTexto {
 
-	public static final String FICHERO = "ficheros" + File.separator + "ficheroTexto.txt";
+	private static final String FICHERO = String.format("%s%s%s", "ficheros", File.separator, "ficheroTexto.txt");
     
 	public static void main(String[] args) {
-
-		File ficheroEntrada = new File(FICHERO);
-		try (FileReader entrada = new FileReader(ficheroEntrada)){
+		try (FileReader entrada = new FileReader(FICHERO)){
 			int dato;
 			while ((dato = entrada.read()) != -1) {
 				System.out.print((char) dato);

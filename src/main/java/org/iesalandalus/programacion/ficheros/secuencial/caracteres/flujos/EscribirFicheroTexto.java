@@ -4,24 +4,20 @@ import java.io.*;
 
 public class EscribirFicheroTexto {
 	
-	public static final String FICHERO = "ficheros" + File.separator + "SalidaFicheroTexto.txt";
+	private static final String FICHERO = String.format("%s%s%s", "ficheros", File.separator, "SalidaFicheroTexto.txt");
     
 	public static void main(String[] args) {
-
-		File ficheroSalida = new File(FICHERO);
-		try (FileWriter salida = new FileWriter(ficheroSalida);
+		try (FileWriter salida = new FileWriter(FICHERO);
 			InputStreamReader entrada = new InputStreamReader(System.in)){
-			try {
-				int dato;
-				while ((dato = entrada.read()) != '|') {
-					salida.write((char)dato);
-				}
-			} catch (IOException e) {
-				System.out.println("Error inesperado de Entrada/Salida");
+			int dato;
+			while ((dato = entrada.read()) != '|') {
+				salida.write((char)dato);
 			}
+		} catch (FileNotFoundException e) {
+			System.out.printf("No sexiste el fichero de destino: %s%n", FICHERO);
 		}
 		catch (IOException e) {
-			System.out.println("No se puede crear el fichero de salida");
+			System.out.println("Error inesperado de Entrada/Salida");
 		}
 	}
 

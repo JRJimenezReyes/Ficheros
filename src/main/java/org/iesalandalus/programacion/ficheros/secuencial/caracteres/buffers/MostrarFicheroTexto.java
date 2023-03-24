@@ -7,20 +7,19 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class MostrarFicheroTexto {
-	public static final String FICHERO = "ficheros" + File.separator + "ficheroTexto.txt";
+	
+	private static final String FICHERO = String.format("%s%s%s", "ficheros", File.separator, "ficheroTexto.txt");
     
 	public static void main(String[] args) {
-
-		File ficheroEntrada = new File(FICHERO);
-		try (BufferedReader entrada = new BufferedReader(new FileReader(ficheroEntrada))){
+		try (BufferedReader entrada = new BufferedReader(new FileReader(FICHERO))){
 			String linea;
 			while ((linea = entrada.readLine()) != null) {
 				System.out.println(linea);
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("No se leer el fichero de entrada");
+			System.out.println("No se leer el fichero de entrada.");
 		} catch (IOException e) {
-			System.out.println("Error inesperado de Entrada/Salida");
+			System.out.println("Error inesperado de Entrada/Salida.");
 		}
 	}
 }

@@ -7,12 +7,14 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 public class EscribeObjetos {
+	
+	private static final String FICHERO = String.format("%s%s%s", "ficheros", File.separator, "personas.dat");
+
 	public static void main(String[] args) {
 		Persona persona;
-		File fichero = new File("ficheros/personas.dat");
 		String[] nombres = { "Juan", "Alfonso", "Araceli", "Manolo", "Rubén", "Elvira", "Inés", "José Ramón" };
 		int[] edades = { 31, 35, 25, 40, 37, 18, 20, 22 };
-		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(fichero))){
+		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(new File(FICHERO)))){
 			for (int i = 0; i < edades.length; i++) {
 				persona = new Persona(nombres[i], edades[i]);
 				salida.writeObject(persona);

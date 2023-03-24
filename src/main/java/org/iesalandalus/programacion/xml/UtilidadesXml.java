@@ -1,6 +1,6 @@
 package org.iesalandalus.programacion.xml;
 
-import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.xml.XMLConstants;
@@ -37,8 +37,8 @@ public class UtilidadesXml {
 		return constructor;
 	}
 
-	public static void escribirXmlAFichero(Document documento, File salida) {
-		try {
+	public static void escribirXmlAFichero(Document documento, String salida) {
+		try (FileWriter ficheroSalida = new FileWriter(salida)) {
 			TransformerFactory factoria = TransformerFactory.newInstance();
 			factoria.setAttribute(XMLConstants.ACCESS_EXTERNAL_DTD, "");
 			factoria.setAttribute(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, "");
@@ -49,15 +49,17 @@ public class UtilidadesXml {
 			StreamResult destino = new StreamResult(salida);
 			DOMSource fuente = new DOMSource(documento);
 			conversor.transform(fuente, destino);
-			System.out.printf("Fichero %s escrito correctamente.%n", salida.getName());
+			System.out.printf("Fichero %s escrito correctamente.%n", salida);
 		} catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
 			System.out.println("Imposible crear el conversor.");
 		} catch (TransformerException e) {
 			System.out.println("Error irecuperable en la conversión.");
+		} catch (IOException e) {
+			System.out.printf("No existe el directorio de destino o no tengo permiso de escritura: %s.%n", salida);
 		}
 	}
 
-	public static Document leerXmlDeFichero(File ficheroXml) {
+	public static Document leerXmlDeFichero(String ficheroXml) {
 		Document documentoXml = null;
 		try {
 			DocumentBuilder constructor = crearConstructorDocumentoXml();

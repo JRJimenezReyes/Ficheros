@@ -2,6 +2,7 @@ package org.iesalandalus.programacion.xml;
 
 import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -12,33 +13,35 @@ import org.w3c.dom.NodeList;
 
 public class ConvertirXmlConAtributosAFicheroDatosPrimitivos {
 	
-	private static final String FICHERO_DATOS_PRIMITIVOS = "ficheros" + File.separator + "ficheroDatos.bin";
-	private static final String FICHERO_XML = "ficheros" + File.separator + "datosAtributos.xml";	
+	private static final String FICHERO_DATOS_PRIMITIVOS = String.format("%s%s%s", "ficheros", File.separator, "ficheroDatos.bin");
+	private static final String FICHERO_XML = String.format("%s%s%s", "ficheros", File.separator, "datosAtributos.xml");	
 	
 	public static void main(String[] args) {
-		Document documento = UtilidadesXml.leerXmlDeFichero(new File(FICHERO_XML));
+		Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_XML);
 		if (documento != null) {
 			System.out.println("Fichero XML leído correctamente.");
-			escribirXmlConAtributosAFicheroDatosPrimitivos(documento, new File(FICHERO_DATOS_PRIMITIVOS));
+			escribirXmlConAtributosAFicheroDatosPrimitivos(documento);
 		} else {
-			System.out.println("No se ha podido leer el fichero XML.");
+			System.out.printf("No se puede leer el fichero de entrada: %s.%n", FICHERO_XML);
 		}
 	}
 	
-	private static void escribirXmlConAtributosAFicheroDatosPrimitivos(Document documento, File fichero) {
-		try (DataOutputStream salida = new DataOutputStream(new FileOutputStream(fichero))){
+	private static void escribirXmlConAtributosAFicheroDatosPrimitivos(Document documento) {
+		try (DataOutputStream salida = new DataOutputStream(new FileOutputStream(FICHERO_DATOS_PRIMITIVOS))){
 			NodeList personas = documento.getElementsByTagName("dato");
 			for (int i = 0; i < personas.getLength(); i++) {
-				Node nPersona = personas.item(i);
-				if (nPersona.getNodeType() == Node.ELEMENT_NODE) {
-					salida.writeUTF(((Element)nPersona).getAttribute("cadena"));
-					salida.writeInt(Integer.parseInt(((Element)nPersona).getAttribute("entero")));
-					salida.writeDouble(Double.parseDouble(((Element)nPersona).getAttribute("doble").replace(',', '.')));
+				Node persona = personas.item(i);
+				if (persona.getNodeType() == Node.ELEMENT_NODE) {
+					salida.writeUTF(((Element)persona).getAttribute("cadena"));
+					salida.writeInt(Integer.parseInt(((Element)persona).getAttribute("entero")));
+					salida.writeDouble(Double.parseDouble(((Element)persona).getAttribute("doble").replace(',', '.')));
 				}
 			}
 			System.out.println("Fichero de objetos escrito correctamente.");
+		} catch (FileNotFoundException e) {
+			System.out.printf("No existe el directorio de destino o no tengo permiso de escritura: %s.%n", FICHERO_DATOS_PRIMITIVOS);
 		} catch (IOException e) {
-			System.out.println("No puedo abrir el fihero de salida.");
+			System.out.println("Error inesperado de Entrada/Salida.");
 		}
 	}
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<datosPrimitvos>
+<datosPrimitivos>
     <dato>
         <cadena>Cadena número: 0</cadena>
         <entero>0</entero>
@@ -50,4 +50,4 @@
         <entero>90</entero>
         <doble>0,900000</doble>
     </dato>
-</datosPrimitvos>
+</datosPrimitivos>

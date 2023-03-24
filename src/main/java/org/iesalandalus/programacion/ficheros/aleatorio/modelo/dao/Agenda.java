@@ -1,21 +1,25 @@
 package org.iesalandalus.programacion.ficheros.aleatorio.modelo.dao;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import org.iesalandalus.programacion.ficheros.aleatorio.modelo.dominio.Amigo;
 
 public class Agenda {
+	
+	private static final String FICHERO_AMIGOS = String.format("%s%s%s", "ficheros", File.separator, "amigos.dat");
 
 	private RandomAccessFile fichero;
 
 	public void abrir() throws IOException {
-		fichero = new RandomAccessFile("ficheros/amigos.dat", "rw");
+		fichero = new RandomAccessFile(FICHERO_AMIGOS, "rw");
 	}
 
 	public void cerrar() throws IOException {
-		if (fichero != null)
+		if (fichero != null) {
 			fichero.close();
+		}
 	}
 
 	public RegistroAmigo leer() {
@@ -31,22 +35,23 @@ public class Agenda {
 		return registro;
 	}
 
-	public RegistroAmigo leer(long pos) throws IOException {
+	public RegistroAmigo leer(long indice) throws IOException {
 		if (fichero != null) {
-			fichero.seek((pos - 1) * RegistroAmigo.LONGITUD);
+			fichero.seek((indice - 1) * RegistroAmigo.LONGITUD);
 		}
 		return leer();
 	}
 	
 	public void escribir(Amigo amigo) throws IOException {
 		RegistroAmigo registro = new RegistroAmigo(amigo);
-		if (fichero != null)
+		if (fichero != null) {
 			registro.escribir(fichero);
+		}
 	}
 
-	public void escribir(Amigo amigo, long pos) throws IOException {
+	public void escribir(Amigo amigo, long indice) throws IOException {
 		if (fichero != null) {
-			fichero.seek((pos - 1) * RegistroAmigo.LONGITUD);
+			fichero.seek((indice - 1) * RegistroAmigo.LONGITUD);
 			escribir(amigo);
 		}
 	}
@@ -71,29 +76,29 @@ public class Agenda {
 	}
 	
 	public void borrar(Amigo amigo) throws IOException {
-		long pos = buscar(amigo);
-		if (pos != -1) {
-			desplazarIzquierda(pos);
+		long indice = buscar(amigo);
+		if (indice != -1) {
+			desplazarIzquierda(indice);
 		}
 	}
 	
 	public long buscar(Amigo amigo) throws IOException {
 		boolean encontrado = false;
 		RegistroAmigo registro = null;
-		long i = 1;
-		while (i <= getNumRegistros() && !encontrado) {
-			registro = leer(i++);
+		long indiceRegistro = 1;
+		while (indiceRegistro <= getNumRegistros() && !encontrado) {
+			registro = leer(indiceRegistro++);
 			encontrado = amigo.compareTo(registro) == 0;
 		}
-		return (encontrado) ? i-1 : -1;
+		return (encontrado) ? indiceRegistro - 1 : -1;
 	}
 	
-	protected void desplazarIzquierda(long pos) throws IOException {
+	protected void desplazarIzquierda(long posicion) throws IOException {
 		long numRegistros = getNumRegistros();	
-		Amigo aux = null;
-		for (long i = pos; i < numRegistros; i++) {
-			aux = leer(i + 1);
-			escribir(aux, i);
+		Amigo registroAuxiliar = null;
+		for (long i = posicion; i < numRegistros; i++) {
+			registroAuxiliar = leer(i + 1);
+			escribir(registroAuxiliar, i);
 		}
 		setNumRegistros(numRegistros - 1);
 	}

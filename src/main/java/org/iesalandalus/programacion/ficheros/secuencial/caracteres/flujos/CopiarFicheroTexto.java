@@ -4,31 +4,25 @@ import java.io.*;
 
 public class CopiarFicheroTexto {
 	
-	public static final String FICHERO_ENTRADA = "ficheros" + File.separator + "ficheroTextoGrande.txt";
-	public static final String FICHERO_SALIDA= "ficheros" + File.separator + "SalidaFicheroTexto.txt";
+	private static final String FICHERO_ENTRADA = String.format("%s%s%s", "ficheros", File.separator, "ficheroTextoGrande.txt");
+	private static final String FICHERO_SALIDA = String.format("%s%s%s", "ficheros", File.separator, "SalidaFicheroTexto.txt");
     
 	public static void main(String[] args) {
-
-		File ficheroEntrada = new File(FICHERO_ENTRADA);
-		File ficheroSalida = new File(FICHERO_SALIDA);
-		
-		try (FileReader entrada = new FileReader(ficheroEntrada)){
-			try (FileWriter salida = new FileWriter(ficheroSalida)){	
-				try {
-					int dato;
-					while ((dato = entrada.read()) != -1) {
-						salida.write((char)dato);
-					}
-					System.out.println("Fichero copiado satisfactoriamente");
-				} catch (IOException e) {
-					System.out.println("Error inesperado de Entrada/Salida");
-				}
-			} catch (IOException e) {
-				System.out.println("No puedo crear el fichero de salida: " + FICHERO_SALIDA);
+		try (FileReader entrada = new FileReader(FICHERO_ENTRADA); FileWriter salida = new FileWriter(FICHERO_SALIDA)){
+			int dato;
+			while ((dato = entrada.read()) != -1) {
+				salida.write((char)dato);
 			}
-		} catch (IOException e) {
-			System.out.println("No existe el fichero de origen: " + FICHERO_ENTRADA);
-		}
+			System.out.println("Fichero copiado satisfactoriamente.");
+		} catch (FileNotFoundException e) {
+			if (e.getMessage().startsWith(FICHERO_ENTRADA)) {
+				System.out.printf("No sexiste el fichero de origen: %s%n", FICHERO_ENTRADA);
+			} else {
+				System.out.printf("No existe el directorio de destino o no tengo permiso de escritura: %s%n", FICHERO_SALIDA);
+			}
+		} catch (IOException e) {	
+			System.out.println("Error inesperado de Entrada/Salida.");
+		} 
 	}
 
 }

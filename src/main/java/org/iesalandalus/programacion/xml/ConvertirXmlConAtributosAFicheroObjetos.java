@@ -15,21 +15,19 @@ import org.w3c.dom.NodeList;
 public class ConvertirXmlConAtributosAFicheroObjetos {
 	
 	private static final String FICHERO_OBJETOS = String.format("%s%s%s","ficheros", File.separator, "personas.dat");
-	private static final String FICHERO_XML = String.format("%s%s%s", "ficheros", File.separator, "personasAtributos.xml");	
+	private static final String FICHERO_XML = String.format("%s%s%s", "ficheros", File.separator, "personasAtributos.xml");
 	
 	public static void main(String[] args) {
-		Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_XML);
-		if (documento != null) {
+		Document documentoXml = UtilidadesXml.leerDocumentoXml(FICHERO_XML);
+		if (documentoXml != null) {
 			System.out.println("Fichero XML leído correctamente.");
-			escribirXmlConAtributosAFicheroObjetos(documento);
-		} else {
-			System.out.printf("No se puede leer el fichero de entrada: %s.%n", FICHERO_XML);
+			escribirXmlConAtributosAFicheroObjetos(documentoXml);
 		}
 	}
 	
-	private static void escribirXmlConAtributosAFicheroObjetos(Document documento) {
+	private static void escribirXmlConAtributosAFicheroObjetos(Document documentoXml) {
 		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(FICHERO_OBJETOS))){
-			NodeList personas = documento.getElementsByTagName("persona");
+			NodeList personas = documentoXml.getElementsByTagName("persona");
 			for (int i = 0; i < personas.getLength(); i++) {
 				Node persona = personas.item(i);
 				if (persona.getNodeType() == Node.ELEMENT_NODE) {
@@ -40,7 +38,7 @@ public class ConvertirXmlConAtributosAFicheroObjetos {
 			}
 			System.out.println("Fichero de objetos escrito correctamente.");
 		} catch (FileNotFoundException e) {
-			System.out.printf("No existe el directorio de destino o no tengo permiso de escritura: %s.%n", FICHERO_OBJETOS);
+			System.out.printf("No se ha podido escribir el fichero %s.%n", FICHERO_OBJETOS);
 		} catch (IOException e) {
 			System.out.println("Error inesperado de Entrada/Salida.");
 		}

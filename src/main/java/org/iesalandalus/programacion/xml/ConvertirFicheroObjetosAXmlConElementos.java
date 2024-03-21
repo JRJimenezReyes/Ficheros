@@ -22,8 +22,8 @@ public class ConvertirFicheroObjetosAXmlConElementos {
 	
 	public static void main(String[] args) {
 		List<Persona> personas = leerFicheroObjetos();
-		Document documento = crearDom(personas);
-		UtilidadesXml.escribirXmlAFichero(documento, FICHERO_XML);
+		Document documentoXml = crearDocumentoXml(personas);
+		UtilidadesXml.escribirDocumentoXml(documentoXml, FICHERO_XML);
 	}
 	
 	private static List<Persona> leerFicheroObjetos() {
@@ -45,7 +45,7 @@ public class ConvertirFicheroObjetosAXmlConElementos {
 		return personas;
 	}
 	
-	private static Document crearDom(List<Persona> personas) {
+	private static Document crearDocumentoXml(List<Persona> personas) {
 		DocumentBuilder constructor = UtilidadesXml.crearConstructorDocumentoXml();
 		Document documentoXml = null;
 		if (constructor != null) {

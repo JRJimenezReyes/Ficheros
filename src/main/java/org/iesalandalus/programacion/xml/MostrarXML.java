@@ -19,16 +19,14 @@ public class MostrarXML {
 	private static final String FICHERO_XML = String.format("%s%s%s", "ficheros", File.separator, "ejemplo.xml");
 	
 	public static void main(String[] args) {
-		Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_XML);
-		if (documento != null) {
+		Document documentoXml = UtilidadesXml.leerDocumentoXml(FICHERO_XML);
+		if (documentoXml != null) {
 			System.out.println("Fichero XML leído correctamente.");
-			mostrarDocumentoXml(documento);
-		} else {
-			System.out.printf("No se puede leer el fichero de entrada: %s.%n", FICHERO_XML);
+			mostrarDocumentoXml(documentoXml);
 		}
 	}
 	
-	private static void mostrarDocumentoXml(Document documento) {
+	private static void mostrarDocumentoXml(Document documentoXml) {
         Transformer conversor = null;
         StreamResult destino = null;
 		try {
@@ -38,13 +36,13 @@ public class MostrarXML {
 			conversor = factoria.newTransformer();            
 	        StringWriter documentoXMLTexto = new StringWriter();
 			destino = new StreamResult(documentoXMLTexto);            
-	        DOMSource fuente = new DOMSource(documento);
+	        DOMSource fuente = new DOMSource(documentoXml);
 	        conversor.transform(fuente, destino);    
 	        System.out.println(documentoXMLTexto.toString());
 		} catch (TransformerConfigurationException | TransformerFactoryConfigurationError e) {
 			System.out.println("Imposible crear el conversor.");
 		} catch (TransformerException e) {
-			System.out.println("Error irecuperable en la conversión.");
+			System.out.println("Error irrecuperable en la conversión.");
 		}
 	}
 }

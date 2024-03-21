@@ -51,7 +51,7 @@ public class ConvertirFicheroObjetosACSV {
 			}
 			System.out.println("Fichero CSV escrito satisfactoriamente.");
 		} catch (IOException e) {
-			System.out.printf("No existe el directorio de destino o no tengo permiso de escritura: %s.%n", FICHERO_CSV);
+			System.out.printf("No se ha podido escribir el fichero %s.%n", FICHERO_CSV);
 		}
 	}
 

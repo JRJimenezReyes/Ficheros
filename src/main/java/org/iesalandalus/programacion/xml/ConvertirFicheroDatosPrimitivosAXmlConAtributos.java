@@ -21,8 +21,8 @@ public class ConvertirFicheroDatosPrimitivosAXmlConAtributos {
 
 	public static void main(String[] args) {
 		List<DatoPrimitivo> personas = leerFicheroDatosPrimitvos();
-		Document documento = crearDom(personas);
-		UtilidadesXml.escribirXmlAFichero(documento, FICHERO_XML);
+		Document documentoXml = crearDocumentoXml(personas);
+		UtilidadesXml.escribirDocumentoXml(documentoXml, FICHERO_XML);
 	}
 
 	private static List<DatoPrimitivo> leerFicheroDatosPrimitvos() {
@@ -47,7 +47,7 @@ public class ConvertirFicheroDatosPrimitivosAXmlConAtributos {
 		return datosPrimitvos;
 	}
 
-	private static Document crearDom(List<DatoPrimitivo> datosPrimitvos) {
+	private static Document crearDocumentoXml(List<DatoPrimitivo> datosPrimitvos) {
 		DocumentBuilder constructor = UtilidadesXml.crearConstructorDocumentoXml();
 		Document documentoXml = null;
 		if (constructor != null) {

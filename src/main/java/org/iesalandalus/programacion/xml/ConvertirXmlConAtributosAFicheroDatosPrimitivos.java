@@ -14,21 +14,19 @@ import org.w3c.dom.NodeList;
 public class ConvertirXmlConAtributosAFicheroDatosPrimitivos {
 	
 	private static final String FICHERO_DATOS_PRIMITIVOS = String.format("%s%s%s", "ficheros", File.separator, "ficheroDatos.bin");
-	private static final String FICHERO_XML = String.format("%s%s%s", "ficheros", File.separator, "datosAtributos.xml");	
+	private static final String FICHERO_XML = String.format("%s%s%s", "ficheros", File.separator, "datosAtributos.xml");
 	
 	public static void main(String[] args) {
-		Document documento = UtilidadesXml.leerXmlDeFichero(FICHERO_XML);
-		if (documento != null) {
+		Document documentoXml = UtilidadesXml.leerDocumentoXml(FICHERO_XML);
+		if (documentoXml != null) {
 			System.out.println("Fichero XML leído correctamente.");
-			escribirXmlConAtributosAFicheroDatosPrimitivos(documento);
-		} else {
-			System.out.printf("No se puede leer el fichero de entrada: %s.%n", FICHERO_XML);
+			escribirXmlConAtributosAFicheroDatosPrimitivos(documentoXml);
 		}
 	}
 	
-	private static void escribirXmlConAtributosAFicheroDatosPrimitivos(Document documento) {
+	private static void escribirXmlConAtributosAFicheroDatosPrimitivos(Document documentoXml) {
 		try (DataOutputStream salida = new DataOutputStream(new FileOutputStream(FICHERO_DATOS_PRIMITIVOS))){
-			NodeList personas = documento.getElementsByTagName("dato");
+			NodeList personas = documentoXml.getElementsByTagName("dato");
 			for (int i = 0; i < personas.getLength(); i++) {
 				Node persona = personas.item(i);
 				if (persona.getNodeType() == Node.ELEMENT_NODE) {
@@ -39,7 +37,7 @@ public class ConvertirXmlConAtributosAFicheroDatosPrimitivos {
 			}
 			System.out.println("Fichero de objetos escrito correctamente.");
 		} catch (FileNotFoundException e) {
-			System.out.printf("No existe el directorio de destino o no tengo permiso de escritura: %s.%n", FICHERO_DATOS_PRIMITIVOS);
+			System.out.printf("No se ha podido escribir el fichero %s.%n", FICHERO_DATOS_PRIMITIVOS);
 		} catch (IOException e) {
 			System.out.println("Error inesperado de Entrada/Salida.");
 		}

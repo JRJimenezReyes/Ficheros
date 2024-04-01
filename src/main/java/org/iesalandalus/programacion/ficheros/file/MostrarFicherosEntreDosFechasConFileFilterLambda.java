@@ -22,7 +22,7 @@ public class MostrarFicherosEntreDosFechasConFileFilterLambda {
 		File carpeta = new File(NOMBRE_CARPETA);
 		File[] contenido = carpeta.listFiles(fichero -> {
 			LocalDate fechaFichero = new Timestamp(fichero.lastModified()).toLocalDateTime().toLocalDate();
-			return (fichero.isFile() && fechaFichero.compareTo(fechaInicio) >=0 && fechaFichero.compareTo(fechaFin) <= 0);
+			return (fichero.isFile() && !fechaFichero.isBefore(fechaInicio) && !fechaFichero.isAfter(fechaFin));
 		});
 		
 		if (contenido != null) {

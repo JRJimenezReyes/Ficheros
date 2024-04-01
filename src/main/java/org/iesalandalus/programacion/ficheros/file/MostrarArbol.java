@@ -15,13 +15,13 @@ public class MostrarArbol {
 	private static void imprimeArbol(File carpeta, String tabulador) {
 		File[] contenido = carpeta.listFiles();
 		if (contenido != null) {
-			for (int i = 0; i < contenido.length; i++) 
-				if (contenido[i].isDirectory()) {
-					System.out.println(tabulador + "|-" + contenido[i].getName());
-					imprimeArbol(contenido[i], tabulador + "|  ");
-				} else {
-					System.out.println(tabulador + "+-" + contenido[i].getName());
-				}
+            for (File file : contenido)
+                if (file.isDirectory()) {
+                    System.out.println(tabulador + "|-" + file.getName());
+                    imprimeArbol(file, tabulador + "|  ");
+                } else {
+                    System.out.println(tabulador + "+-" + file.getName());
+                }
 		}
 	}
 

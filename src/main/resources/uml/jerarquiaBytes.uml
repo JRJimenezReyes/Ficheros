@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xmi:id="_scmN8OdqEe6mzbSW28uIHQ" name="jerarquiaBytes">
+  <packageImport xmi:type="uml:PackageImport" xmi:id="_seKUMOdqEe6mzbSW28uIHQ">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_dHpjkOdyEe6mzbSW28uIHQ" name="java.io">
+    <packagedElement xmi:type="uml:Class" xmi:id="_kayaBOdyEe6mzbSW28uIHQ" name="OutpuStream" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kayaAOdyEe6mzbSW28uIHQ" name="DataOutpuStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_kayaAedyEe6mzbSW28uIHQ" general="_kazBFOdyEe6mzbSW28uIHQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_rkZrkOdzEe6mzbSW28uIHQ" general="_kazBFOdyEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7N9UAOdrEe6mzbSW28uIHQ" name="BufferedInputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_y1ygcOdxEe6mzbSW28uIHQ" general="_EIIPIOdrEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kazBEudyEe6mzbSW28uIHQ" name="BufferedOutputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_kazBE-dyEe6mzbSW28uIHQ" general="_kazBFOdyEe6mzbSW28uIHQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_nRz1AOdzEe6mzbSW28uIHQ" general="_kazBFOdyEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_CBp1YOdsEe6mzbSW28uIHQ" name="DataInputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_0hFkoOdxEe6mzbSW28uIHQ" general="_EIIPIOdrEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_t1HgEOdqEe6mzbSW28uIHQ" name="InputStream" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kazBEOdyEe6mzbSW28uIHQ" name="FileOutputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_kazBEedyEe6mzbSW28uIHQ" general="_kayaBOdyEe6mzbSW28uIHQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_ucIGoOdzEe6mzbSW28uIHQ" general="_kayaBOdyEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kazBFOdyEe6mzbSW28uIHQ" name="FilterOutputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_kazBFedyEe6mzbSW28uIHQ" general="_kayaBOdyEe6mzbSW28uIHQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_syfPUOdzEe6mzbSW28uIHQ" general="_kayaBOdyEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_EIIPIOdrEe6mzbSW28uIHQ" name="FilterInputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_xGqFIOdxEe6mzbSW28uIHQ" general="_t1HgEOdqEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kayaAudyEe6mzbSW28uIHQ" name="ObjectOutputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_kayaA-dyEe6mzbSW28uIHQ" general="_kayaBOdyEe6mzbSW28uIHQ"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_xzUE4OdzEe6mzbSW28uIHQ" general="_kayaBOdyEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_iFt1gOdxEe6mzbSW28uIHQ" name="ObjectInputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_x-PNYOdxEe6mzbSW28uIHQ" general="_t1HgEOdqEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_-FXbcOdqEe6mzbSW28uIHQ" name="FileInputStream">
+      <generalization xmi:type="uml:Generalization" xmi:id="_wAtwwOdxEe6mzbSW28uIHQ" general="_t1HgEOdqEe6mzbSW28uIHQ"/>
+    </packagedElement>
+  </packagedElement>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_sd2LIOdqEe6mzbSW28uIHQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sd2yMOdqEe6mzbSW28uIHQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/PapyrusJava/1#/"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://PapyrusJava_PROFILES/PapyrusJava.profile.uml#_j9REUByGEduN1bTiWJ0lyw"/>
+  </profileApplication>
+</uml:Model>

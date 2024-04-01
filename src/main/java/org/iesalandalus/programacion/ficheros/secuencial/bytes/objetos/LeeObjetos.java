@@ -12,13 +12,13 @@ public class LeeObjetos {
 	
 	public static void main(String[] args) {
 		try (ObjectInputStream entrada = new ObjectInputStream(new FileInputStream(new File(FICHERO)))){
-			mostrarObjectos(entrada);
+			mostrarObjetos(entrada);
 		} catch (IOException e) {
-			System.out.println("No puedo abrir el fihero de entrada.");
+			System.out.println("No puedo abrir el fichero de entrada.");
 		}
 	}
 
-	private static void mostrarObjectos(ObjectInputStream entrada) {
+	private static void mostrarObjetos(ObjectInputStream entrada) {
 		Persona persona;
 		try {
 			while ((persona = (Persona) entrada.readObject()) != null) {

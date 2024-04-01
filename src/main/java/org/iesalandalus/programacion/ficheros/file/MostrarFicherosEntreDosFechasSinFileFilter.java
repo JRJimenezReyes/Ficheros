@@ -25,7 +25,7 @@ public class MostrarFicherosEntreDosFechasSinFileFilter {
 		if (contenido != null) {
 			for (File fichero : contenido) {
 				LocalDate fechaFichero = new Timestamp(fichero.lastModified()).toLocalDateTime().toLocalDate();
-				if (fichero.isFile() && fechaFichero.compareTo(fechaInicio) >=0 && fechaFichero.compareTo(fechaFin) <= 0) {
+				if (fichero.isFile() && !fechaFichero.isBefore(fechaInicio) && !fechaFichero.isAfter(fechaFin)) {
 					System.out.printf("%s: %s%n", fichero.getName(), fechaFichero.format(FORMATO_FECHA));
 				}
 			}

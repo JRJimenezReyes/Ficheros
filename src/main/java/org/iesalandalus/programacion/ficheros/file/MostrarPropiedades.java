@@ -8,14 +8,8 @@ import org.iesalandalus.programacion.utilidades.Entrada;
 public class MostrarPropiedades {
 
 	public static void main(String[] args) {
-		
-		System.out.println("Propiedades del sistema");
-		System.out.println("=======================");
-		System.out.println("Separador del sistema: " + File.separator);
-		System.out.println("Directorio de trabajo: " + new java.io.File("").getAbsolutePath());
-		System.out.println("URL de la clase: " + MostrarPropiedades.class.getClassLoader().getResource("").getPath());
-		System.out.println("Directorio de trabajo (user.dir): " + System.getProperty("user.dir"));
-		System.out.println();
+
+		mostrarPropiedadesSistema();
 		System.out.print("Escribe el nombre del fichero: ");
 		String nombreFichero = Entrada.cadena();
 		while(!nombreFichero.equals("FIN")) {
@@ -32,31 +26,40 @@ public class MostrarPropiedades {
 
 	}
 
+	private static void mostrarPropiedadesSistema() {
+		System.out.println("Propiedades del sistema");
+		System.out.println("=======================");
+		System.out.printf("Separador del sistema: %s%n", File.separator);
+		System.out.printf("Directorio de trabajo: %s%n", new File("").getAbsolutePath());
+		System.out.printf("Directorio de trabajo (user.dir): %s%n%n", System.getProperty("user.dir"));
+	}
+
 	private static void mostrarPropiedadesFichero(File fichero) {
-		System.out.println("Fecha última modificación: " + new Date(fichero.lastModified()));
-		System.out.println("Directorio? " + fichero.isDirectory());
-		System.out.println("Fichero? " + fichero.isFile());
-		System.out.println("Se puede escribir? " + fichero.canWrite());
-		System.out.println("Se puede leer? " + fichero.canRead());
-		System.out.println("Se puede ejecutar? " + fichero.canExecute());
-		System.out.println("Camino absoluto: " + fichero.getAbsolutePath());
-		System.out.println("Tamaño: " + fichero.length());
+		System.out.printf("Fecha última modificación: %s%n", new Date(fichero.lastModified()));
+		System.out.printf("Directorio? %s%n", fichero.isDirectory());
+		System.out.printf("Fichero? %s%n", fichero.isFile());
+		System.out.printf("Se puede escribir? %s%n", fichero.canWrite());
+		System.out.printf("Se puede leer? %s%n", fichero.canRead());
+		System.out.printf("Se puede ejecutar? %s%n", fichero.canExecute());
+		System.out.printf("Camino absoluto: %s%n", fichero.getAbsolutePath());
+		System.out.printf("Tamaño: %d%n", fichero.length());
 		
 		if (fichero.isDirectory()) {
 			System.out.println();
 			System.out.println("Contenido del directorio");
 			System.out.println("========================");
 			File[] ficheros = fichero.listFiles();
-			for (int i=0; i<ficheros.length; i++) {
-				if (ficheros[i].isDirectory()) {
-					System.out.println("D-> " + ficheros[i]);
-				} else {
-					System.out.println("A-> " + ficheros[i]);
+			if (ficheros != null) {
+				for (File file : ficheros) {
+					if (file.isDirectory()) {
+						System.out.printf("D-> %s%n", file);
+					} else {
+						System.out.printf("A-> %s%n", file);
+					}
 				}
 			}
 		}
-		System.out.println("---------------------------");
-		System.out.println();
+		System.out.printf("---------------------------%n%n");
 	}
 
 }

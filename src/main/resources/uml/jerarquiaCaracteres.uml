@@ -19,6 +19,12 @@
       <generalization xmi:type="uml:Generalization" xmi:id="_kTTsQOdiEe6mzbSW28uIHQ" general="_28GeQOdgEe6mzbSW28uIHQ"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_28GeQOdgEe6mzbSW28uIHQ" name="Reader" isAbstract="true"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_nGYo0PAeEe6cjrKVEDBBlA" name="FileReader">
+      <generalization xmi:type="uml:Generalization" xmi:id="__Rfh8PAeEe6cjrKVEDBBlA" general="_-kzDEOdiEe6mzbSW28uIHQ"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_yeDrsPAeEe6cjrKVEDBBlA" name="FileWriter">
+      <generalization xmi:type="uml:Generalization" xmi:id="_EQZr8PAfEe6cjrKVEDBBlA" general="_p7OhkOdjEe6mzbSW28uIHQ"/>
+    </packagedElement>
   </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ya_qkOdgEe6mzbSW28uIHQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ybDU8OdgEe6mzbSW28uIHQ" source="http://www.eclipse.org/uml2/2.0.0/UML">

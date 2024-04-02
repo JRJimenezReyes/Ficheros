@@ -17,7 +17,7 @@ public class MostrarFicheroTexto {
 				System.out.println(linea);
 			}
 		} catch (FileNotFoundException e) {
-			System.out.println("No se leer el fichero de entrada.");
+			System.out.println("No se puede leer el fichero de entrada.");
 		} catch (IOException e) {
 			System.out.println("Error inesperado de Entrada/Salida.");
 		}

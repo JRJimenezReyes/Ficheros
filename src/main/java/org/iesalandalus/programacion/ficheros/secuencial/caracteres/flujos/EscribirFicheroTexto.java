@@ -14,7 +14,7 @@ public class EscribirFicheroTexto {
 				salida.write((char)dato);
 			}
 		} catch (FileNotFoundException e) {
-			System.out.printf("No sexiste el fichero de destino: %s%n", FICHERO);
+			System.out.printf("No existe el fichero de destino: %s%n", FICHERO);
 		}
 		catch (IOException e) {
 			System.out.println("Error inesperado de Entrada/Salida");

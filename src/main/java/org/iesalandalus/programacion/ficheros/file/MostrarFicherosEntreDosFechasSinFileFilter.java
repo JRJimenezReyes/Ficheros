@@ -24,12 +24,16 @@ public class MostrarFicherosEntreDosFechasSinFileFilter {
 		
 		if (contenido != null) {
 			for (File fichero : contenido) {
-				LocalDate fechaFichero = new Timestamp(fichero.lastModified()).toLocalDateTime().toLocalDate();
+				LocalDate fechaFichero = getUltimaModificacion(fichero);
 				if (fichero.isFile() && !fechaFichero.isBefore(fechaInicio) && !fechaFichero.isAfter(fechaFin)) {
 					System.out.printf("%s: %s%n", fichero.getName(), fechaFichero.format(FORMATO_FECHA));
 				}
 			}
 		}
+	}
+
+	private static LocalDate getUltimaModificacion(File fichero) {
+		return new Timestamp(fichero.lastModified()).toLocalDateTime().toLocalDate();
 	}
 
 	private static LocalDate leerFecha(String mensaje) {

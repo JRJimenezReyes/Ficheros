@@ -25,11 +25,11 @@ public class MostrarFicheroBinario {
 		int dato;
 		int numBytes = 0;
 		int desplazamiento = 0;
-		StringBuilder lineaHexa = new StringBuilder("");
-		StringBuilder lineaChar = new StringBuilder("");
+		StringBuilder lineaHexa = new StringBuilder();
+		StringBuilder lineaChar = new StringBuilder();
 		while ((dato = entrada.read()) != -1) {
 			numBytes++;
-			lineaHexa.append(String.format("%02x", dato) + " ");
+			lineaHexa.append(String.format("%02x ", dato));
 			lineaChar.append((32 <= dato && 126 >= dato) ? (char)dato : ".");
 			if (numBytes == 8)
 				lineaHexa.append(" ");

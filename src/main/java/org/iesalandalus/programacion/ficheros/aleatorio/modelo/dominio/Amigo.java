@@ -43,16 +43,14 @@ public class Amigo {
 	}
 	
 	public Amigo(Amigo amigo) {
-		if (amigo == null) {
-			throw new NullPointerException("El amigo a copiar no puede ser nulo.");
-		}
-		nombre = amigo.getNombre();
-		telefono = amigo.getTelefono();
-		correo = amigo.getCorreo();
-		direccion = amigo.getDireccion();
-		fechaNacimiento = amigo.getFechaNacimiento();
-		peso = amigo.getPeso();
-		altura = amigo.getAltura();
+		Objects.requireNonNull(amigo, "El amigo a copiar no puede ser nulo.");
+		nombre = amigo.nombre;
+		telefono = amigo.telefono;
+		correo = amigo.correo;
+		direccion = amigo.direccion;
+		fechaNacimiento = amigo.fechaNacimiento;
+		peso = amigo.peso;
+		altura = amigo.altura;
 	}
 	
 	public String getNombre() {
@@ -60,9 +58,7 @@ public class Amigo {
 	}
 
 	public void setNombre(String nombre) {
-		if (nombre == null) {
-			throw new NullPointerException("El nombre no puede ser nulo.");
-		}
+		Objects.requireNonNull(nombre, "El nombre no puede ser nulo.");
 		if (nombre.isBlank()) {
 			throw new IllegalArgumentException("El nombre no puede estar vacío.");
 		}
@@ -74,9 +70,7 @@ public class Amigo {
 	}
 
 	public void setTelefono(String telefono) {
-		if (telefono == null) {
-			throw new NullPointerException("El teléfono no puede ser nulo.");
-		}
+		Objects.requireNonNull(telefono,"El teléfono no puede ser nulo.");
 		if (!telefono.matches(ER_TELEFONO)) {
 			throw new IllegalArgumentException("El formato del teléfono no es correcto.");
 		}
@@ -88,9 +82,7 @@ public class Amigo {
 	}
 
 	public void setCorreo(String correo) {
-		if (correo == null) {
-			throw new NullPointerException("El correo no puede ser nulo.");
-		}
+		Objects.requireNonNull(correo, "El correo no puede ser nulo.");
 		if (!correo.matches(ER_CORREO)) {
 			throw new IllegalArgumentException("El formato del correo no es correcto.");
 		}
@@ -102,9 +94,7 @@ public class Amigo {
 	}
 
 	public void setDireccion(String direccion) {
-		if (direccion == null) {
-			throw new NullPointerException("La dirección no puede ser nula.");
-		}
+		Objects.requireNonNull(direccion, "La dirección no puede ser nula.");
 		if (direccion.isBlank()) {
 			throw new IllegalArgumentException("La dirección no puede estar vacía.");
 		}
@@ -120,16 +110,12 @@ public class Amigo {
 	}
 
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-		if (fechaNacimiento == null) {
-			throw new NullPointerException("La fecha de nacimiento no puede ser nula.");
-		}
+		Objects.requireNonNull(fechaNacimiento, "La fecha de nacimiento no puede ser nula.");
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
 	public void setFechaNacimiento(String fechaNacimiento) {
-		if (fechaNacimiento == null) {
-			throw new NullPointerException("La fecha de nacimiento no puede ser nula.");
-		}
+		Objects.requireNonNull(fechaNacimiento, "La fecha de nacimiento no puede ser nula.");
 		try {
 			this.fechaNacimiento = LocalDate.parse(fechaNacimiento, FORMATO_DIA);
 		} catch (DateTimeParseException e) {
@@ -164,29 +150,21 @@ public class Amigo {
 	}
 
 	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Amigo amigo)) return false;
+		return Objects.equals(nombre, amigo.nombre);
+	}
+
+	@Override
 	public int hashCode() {
 		return Objects.hash(nombre);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Amigo)) {
-			return false;
-		}
-		Amigo other = (Amigo) obj;
-		return Objects.equals(nombre, other.nombre);
-	}
-
-	@Override
 	public String toString() {
 		return String.format(
-				"Amigo [nombre=%s, telefono=%s, correo=%s, direccion=%s, fechaNacimiento=%s, peso=%s, altura=%s]",
+				"Amigo [nombre=%s, teléfono=%s, correo=%s, dirección=%s, fechaNacimiento=%s, peso=%s, altura=%s]",
 				nombre, telefono, correo, direccion, fechaNacimiento.format(FORMATO_DIA), peso, altura);
 	}
 	

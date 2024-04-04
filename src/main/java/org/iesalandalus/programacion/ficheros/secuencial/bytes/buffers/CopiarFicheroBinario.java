@@ -18,7 +18,7 @@ public class CopiarFicheroBinario {
 			copiarFichero(entrada, salida);
 		} catch (FileNotFoundException e) {
 			if (e.getMessage().startsWith(FICHERO_ENTRADA)) {
-				System.out.printf("No sexiste el fichero de origen: %s%n", FICHERO_ENTRADA);
+				System.out.printf("No existe el fichero de origen: %s%n", FICHERO_ENTRADA);
 			} else {
 				System.out.printf("No existe el directorio de destino o no tengo permiso de escritura: %s%n", FICHERO_SALIDA);
 			}

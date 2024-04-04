@@ -15,7 +15,7 @@ public class MostrarFicheroBinario {
 		try (BufferedInputStream entrada = new BufferedInputStream(new FileInputStream(ficheroEntrada))){
 			mostrarFichero(entrada);
 		} catch (FileNotFoundException e) {
-			System.out.println("No se leer el fichero de entrada");
+			System.out.println("No se puede leer el fichero de entrada");
 		} catch (IOException e) {
 			System.out.println("Error inesperado de Entrada/Salida");
 		}
@@ -24,8 +24,8 @@ public class MostrarFicheroBinario {
 	private static void mostrarFichero(BufferedInputStream entrada) throws IOException {
 		int numBytes = 0;
 		int desplazamiento = 0;
-		StringBuilder lineaHexa = new StringBuilder("");
-		StringBuilder lineaChar = new StringBuilder("");
+		StringBuilder lineaHexa = new StringBuilder();
+		StringBuilder lineaChar = new StringBuilder();
 		byte[] linea = new byte[16];
 		while ((numBytes = entrada.read(linea)) != -1) {
 			for (int i = 0; i < 16; i++) {

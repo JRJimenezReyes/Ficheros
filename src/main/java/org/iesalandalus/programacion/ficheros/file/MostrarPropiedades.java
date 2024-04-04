@@ -17,7 +17,7 @@ public class MostrarPropiedades {
 			if (fichero.exists()) {
 				mostrarPropiedadesFichero(fichero);
 			} else {
-				System.out.println("El fichero: " + nombreFichero + " NO existe.");
+				System.out.printf("El fichero: %s No existe.%n", nombreFichero);
 			}
 			
 			System.out.print("Escribe el nombre del fichero: ");

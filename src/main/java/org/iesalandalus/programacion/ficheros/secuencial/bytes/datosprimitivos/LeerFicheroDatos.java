@@ -1,24 +1,22 @@
 package org.iesalandalus.programacion.ficheros.secuencial.bytes.datosprimitivos;
 
-import java.io.DataInputStream;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class LeerFicheroDatos {
 	
 	private static final String FICHERO = String.format("%s%s%s", "ficheros", File.separator, "ficheroDatos.bin");
     
 	public static void main(String[] args) {		
-		try (DataInputStream entrada = new DataInputStream(new FileInputStream(new File(FICHERO)))){
+		try (DataInputStream entrada = new DataInputStream(new FileInputStream(FICHERO))){
 			mostrarDatos(entrada);
+		} catch (FileNotFoundException e) {
+			System.out.println("No se puede leer el fichero de entrada");
 		} catch (IOException e) {
 			System.out.printf("No existe el fichero de origen: %s%n", FICHERO);
 		}
 	}
 
-	private static void mostrarDatos(DataInputStream entrada) {
+	private static void mostrarDatos(DataInputStream entrada) throws IOException {
 		try {
 			String datoString = "";
 			int datoInt;
@@ -31,8 +29,6 @@ public class LeerFicheroDatos {
 			}
 		} catch (EOFException e) {
 			System.out.println("Fichero leído satisfactoriamente.");
-		} catch (IOException e) {
-			System.out.println("Error inesperado de E/S.");
 		}
 	}
 

@@ -14,7 +14,7 @@ public class EscribirObjetosProblema1 {
 		Persona persona = new Persona("lo que sea", 1);
 		String[] nombres = { "Juan", "Alfonso", "Araceli", "Manolo", "Rubén", "Elvira", "Inés", "José Ramón" };
 		int[] edades = { 31, 35, 25, 40, 37, 18, 20, 22 };
-		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(new File(FICHERO)))){
+		try (ObjectOutputStream salida = new ObjectOutputStream(new FileOutputStream(FICHERO))){
 			for (int i = 0; i < edades.length; i++) {
 				persona.setNombre(nombres[i]);
 				persona.setEdad(edades[i]);
@@ -23,11 +23,11 @@ public class EscribirObjetosProblema1 {
 				salida.reset();
 				salida.writeObject(persona);
 			}
-			System.out.println("Fichero escrito satisfactoriamente");
+			System.out.println("Fichero escrito satisfactoriamente.");
 		} catch (FileNotFoundException e) {
-			System.out.println("No puedo crear el fichero de salida");
+			System.out.println("No puedo crear el fichero de salida.");
 		} catch (IOException e) {
-			System.out.println("Error inesperado de Entrada/Salida");
+			System.out.println("Error inesperado de Entrada/Salida.");
 		}
 	}
 }

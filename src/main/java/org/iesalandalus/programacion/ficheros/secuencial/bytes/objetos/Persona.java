@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class Persona implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private int edad;
 
@@ -15,13 +14,10 @@ public class Persona implements Serializable {
 	}
 
 	public void setNombre(String nombre) {
-		if (nombre == null) {
-			throw new NullPointerException("El nombre de una persona no puede ser nulo.");
-		}
+		this.nombre = Objects.requireNonNull(nombre, "El nombre de una persona no puede ser nulo.");
 		if (nombre.isBlank()) {
 			throw new IllegalArgumentException("El nombre de una persona no puede estar vacío.");
 		}
-		this.nombre = nombre;
 	}
 
 	public void setEdad(int edad) {
@@ -40,23 +36,15 @@ public class Persona implements Serializable {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(nombre);
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Persona persona)) return false;
+		return Objects.equals(nombre, persona.nombre);
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Persona)) {
-			return false;
-		}
-		Persona other = (Persona) obj;
-		return Objects.equals(nombre, other.nombre);
+	public int hashCode() {
+		return Objects.hash(nombre);
 	}
 
 	@Override

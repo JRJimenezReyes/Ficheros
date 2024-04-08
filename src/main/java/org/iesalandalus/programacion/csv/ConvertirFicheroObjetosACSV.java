@@ -50,6 +50,8 @@ public class ConvertirFicheroObjetosACSV {
 				salida.write(String.format("%s%s%d%n", persona.getNombre(), SEPARADOR, persona.getEdad()));
 			}
 			System.out.println("Fichero CSV escrito satisfactoriamente.");
+		} catch (FileNotFoundException fnfe) {
+			System.out.printf("No se puede leer el fichero de salida: %s.%n", FICHERO_CSV);
 		} catch (IOException e) {
 			System.out.printf("No se ha podido escribir el fichero %s.%n", FICHERO_CSV);
 		}
